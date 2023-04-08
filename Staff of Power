@@ -103,11 +103,11 @@
   
   --:RayofEnfeeblement|
   --?? ~ChargesOnCharacterSheet$ < 1 ?? skipTo*25|NotEnoughCharges
-  --Spell Cast *8| Magic Missile
+  --Spell Cast *8| Ray of Enfeeblement
   --Effect *8|A black beam of enervating energy springs from your finger toward a creature within range. Make a ranged spell attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends.
   --Range *8| 60 Feet
   --Duration *8|Concentration up to 1 minute
-  --Ranged Spell Attack *8|[[ 1d20+@{spell_attack_bonus}]]
+  --Ranged Spell Attack *8|[[ 1d20+@{spell_attack_bonus}]] vs AC
   --Charges Spent *8| 1
   --Note *8|At the end of each of the target’s turns, it can make a Constitution saving throw against the spell. On a success, the spell ends.
   --api_modattr *8|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-1
@@ -121,7 +121,7 @@
   --Duration *9|Concentration, up to 10 minutes 
   --Charges Spent *9| 5
   --Note *9|Nothing can physically pass through the wall. It is immune to all damage and can’t be dispelled by dispel magic. A disintegrate spell destroys the wall instantly, however. The wall also extends into the Ethereal Plane, blocking ethereal travel through the wall.
-  --api_modattr *9|_silent _charid @{character_id} _repeating_resource_$0_resource_right|-5
+  --api_modattr *9|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-5
   --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*38|DestructionCheck
   --skipTo*28|EndOfCard  
   
