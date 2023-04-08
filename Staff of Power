@@ -1,0 +1,146 @@
+!power {{
+ --name|Staff of Power
+ --leftsub|you gain a +2 to your AC
+ --inlinereplace|ChargesOnCharacterSheet|@{repeating_resource_$1_resource_right}
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == ConeOfCold ?? skipTo*1|ConeOfCold
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == Fireball ?? skipTo*2|Fireball
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == GlobeofInvulnerability ?? skipTo*3|GlobeofInvulnerability
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == HoldMonster ?? skipTo*4|HoldMonster
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == Levitate ?? skipTo*5|Levitate
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == LightningBolt ?? skipTo*6|LightningBolt
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == MagicMissile ?? skipTo*7|MagicMissile
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == RayofEnfeeblement ?? skipTo*8|RayofEnfeeblement
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == WallofForce ?? skipTo*9|WallofForce
+	--?? ?{Select Action|Cone Of Cold - 5 charges,ConeOfCold|Fireball - 5 charges,Fireball|Globe of Invulnerability - 6 charges,GlobeofInvulnerability|Hold Monster - 5 charges,HoldMonster|Levitate - 2 charges,Levitate|Lightning Bolt - 5 charges,LightningBolt|Magic Missile -1 charge,MagicMissile|Ray of Enfeeblement -1 charge,RayofEnfeeblement|Wall of Force -5 charges,Wall of Force|Recharge,Recharge} == Recharge ?? skipTo*10|Recharge
+	
+  --:ConeOfCold|
+  --?? ~ChargesOnCharacterSheet$ < 5 ?? skipTo*11|NotEnoughCharges
+  --Spell Cast| Cone of Cold
+  --Effect| You spray a cone of cold in a 60 ft cone
+  --Saving Throw | @{spell_save_dc} Con Save
+  --Failed Save | [[ [$Damage] 8d8 ]] Cold Damage 
+  --Successful Save| [^Damage.halftotal]  Cold Damage
+  --Charges Spent| 5
+  --Note| A creature killed by this spell becomes a frozen statue until it thaws.
+  --api_modattr *1|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-5
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*30|DestructionCheck
+  --skipTo*12|EndOfCard
+
+  --:Fireball|
+  --?? ~ChargesOnCharacterSheet$ < 5 ?? skipTo*13|NotEnoughCharges
+  --Spell Cast *2| Fireball
+  --Effect *2| A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. 
+  --Saving Throw *2 | @{spell_save_dc} Dex Save
+  --Failed Save *2 | [[ [$Damage] 10d6 ]] Fire Damage 
+  --Successful Save *2| [^Damage.halftotal]  Fire Damage
+  --Charges Spent *2| 5
+  --Note *2| The fire spreads around corners. It ignites flammable objects in the area that aren’t being worn or carried.
+  --api_modattr *2|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-5
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*31|DestructionCheck
+  --skipTo*14|EndOfCard
+
+  --:GlobeofInvulnerability|
+  --?? ~ChargesOnCharacterSheet$ < 6 ?? skipTo*15|NotEnoughCharges
+  --Spell Cast *3| Globe of Invulnerability
+  --Effect *3|An immobile, faintly shimmering barrier springs into existence in a 10-foot radius around you and remains for the duration.
+  --Target| Self (10 foot Radius)
+  --Duration *3|Concentration, up to 1 minute
+  --Charges Spent *3| 6
+  --Note *3|Any spell of 5th level or lower cast from outside the barrier can't affect creatures or objects within it, even if the spell is cast using a higher level spell slot. Such a spell can target creatures and objects within the barrier, but the spell has no effect on them. Similarly, the area within the barrier is excluded from the areas affected by such spells.
+  --api_modattr *3|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-6
+  --?? ~ChargesOnCharacterSheet$ == 6 ?? skipTo*32|DestructionCheck
+  --skipTo*16|EndOfCard 
+  
+  --:HoldMonster|
+  --?? ~ChargesOnCharacterSheet$ < 5 ?? skipTo*17|NotEnoughCharges
+  --Spell Cast *4| Hold Monster
+  --Effect *4|Choose a creature that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target. 
+  --Duration *4|Concentration, up to 1 minute
+  --Saving Throw *4| @{spell_save_dc} Wis Save
+  --Failed Save *4| A paralyzed creature is incapacitated (see the condition) and can’t move or speak. The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage. Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature. 
+  --Charges Spent *4| 5
+  --Note *4|This spell has no effect on undead. 
+  --api_modattr *4|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-5
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*33|DestructionCheck
+  --skipTo*18|EndOfCard  
+
+  --:Levitate|
+  --?? ~ChargesOnCharacterSheet$ < 2 ?? skipTo*19|NotEnoughCharges
+  --Spell Cast *5| Levitate
+  --Effect *5|One creature or loose object of your choice that you can see within range rises vertically, up to 20 feet, and remains suspended there for the duration. The spell can levitate a target that weighs up to 500 pounds. An unwilling creature that succeeds on a Constitution saving throw is unaffected. 
+  --Duration *5|Concentration, up to 10 minutes
+  --Saving Throw *5| @{spell_save_dc} Con Save
+  --Charges Spent *5| 2
+  --Note *5|The target can move only by pushing or pulling against a fixed object or surface within reach (such as a wall or a ceiling), which allows it to move as if it were climbing. You can change the target’s altitude by up to 20 feet in either direction on your turn. If you are the target, you can move up or down as part of your move. Otherwise, you can use your action to move the target, which must remain within the spell’s range. When the spell ends, the target floats gently to the ground if it is still aloft. 
+  --api_modattr *5|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-2
+  --?? ~ChargesOnCharacterSheet$ == 2 ?? skipTo*34|DestructionCheck
+  --skipTo*20|EndOfCard
+  
+  --:LightningBolt|
+  --?? ~ChargesOnCharacterSheet$ < 5 ?? skipTo*21|NotEnoughCharges
+  --Spell Cast *6| Lightning Bolt
+  --Effect *6| A stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose. Each creature in the line must make a Dexterity saving throw.
+  --Saving Throw *6| @{spell_save_dc} Dex Save
+  --Failed Save *6| [[ [$Damage] 10d6 ]] Lightning Damage 
+  --Successful Save *6| [^Damage.halftotal]  Lightning Damage
+  --Charges Spent *6| 5
+  --Note *6| The Lightning ignites flammable objects in the area that aren’t being worn or carried.
+  --api_modattr *6|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-5
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*35|DestructionCheck
+  --skipTo*22|EndOfCard
+  
+  --:MagicMissile|
+  --?? ~ChargesOnCharacterSheet$ < 1 ?? skipTo*23|NotEnoughCharges
+  --Spell Cast *7| Magic Missile
+  --Effect *7| You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target.
+  --Saving Throw *7| @{spell_save_dc} Dex Save
+  --Dart Damage *7| [[ [$Damage] 1d4+1 ]] Force Damage 
+  --Charges Spent *7| 1
+  --Note *7|The darts all strike simultaneously, and you can direct them to hit one creature or several.
+  --api_modattr *7|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-1
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*36|DestructionCheck
+  --skipTo*24|EndOfCard
+  
+  --:RayofEnfeeblement|
+  --?? ~ChargesOnCharacterSheet$ < 1 ?? skipTo*25|NotEnoughCharges
+  --Spell Cast *8| Magic Missile
+  --Effect *8|A black beam of enervating energy springs from your finger toward a creature within range. Make a ranged spell attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends.
+  --Range *8| 60 Feet
+  --Duration *8|Concentration up to 1 minute
+  --Ranged Spell Attack *8|[[ 1d20+@{spell_attack_bonus}]]
+  --Charges Spent *8| 1
+  --Note *8|At the end of each of the target’s turns, it can make a Constitution saving throw against the spell. On a success, the spell ends.
+  --api_modattr *8|_silent _charid @{character_id} _repeating_resource_$1_resource_right|-1
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*37|DestructionCheck
+  --skipTo*26|EndOfCard
+  
+  --:WallOfForce|
+  --?? ~ChargesOnCharacterSheet$ < 5 ?? skipTo*27|NotEnoughCharges
+  --Spell Cast *9| Wall of Force
+  --Effect *9|An invisible⁠ wall of force springs into existence at a point you choose within range. The wall appears in any orientation you choose, as a horizontal or vertical barrier or at an angle. It can be free floating or resting⁠ on a solid surface. You can form it into a hemispherical dome or a sphere⁠ with a radius of up to 10 feet, or you can shape a flat surface made up of ten 10-foot-by-10-foot panels. Each panel must be contiguous with another panel. In any form, the wall is 1/4 inch thick. It lasts for the duration. If the wall cuts through a creature’s space when it appears, the creature is pushed to one side of the wall (your choice which side).
+  --Duration *9|Concentration, up to 10 minutes 
+  --Charges Spent *9| 5
+  --Note *9|Nothing can physically pass through the wall. It is immune to all damage and can’t be dispelled by dispel magic. A disintegrate spell destroys the wall instantly, however. The wall also extends into the Ethereal Plane, blocking ethereal travel through the wall.
+  --api_modattr *9|_silent _charid @{character_id} _repeating_resource_$0_resource_right|-5
+  --?? ~ChargesOnCharacterSheet$ == 5 ?? skipTo*38|DestructionCheck
+  --skipTo*28|EndOfCard  
+  
+ --:Recharge|
+  --Recharge Formula|[[ [XPND] [$RegainedCharges] 2d8+4 + @{repeating_resource_$1_resource_right}]] 
+  --?? $RegainedCharges >= 20 ?? api_setattr *5|_silent _charid @{character_id} _repeating_resource_$1_resource_right|20
+  --?? $RegainedCharges < 20 ?? api_setattr *6|_silent _charid @{character_id} _repeating_resource_$1_resource_right|[^RegainedCharges]
+  --Note *51|The Recharge Formula above is calculated by rolling 2d8+4, and then adding the number of charges the staff currently has (if any). The Staff can hold a maximum of 20 charges. If the total number of charges exceeds 20, then the number of charges will be set to 20.
+  --skipTo*29|EndOfCard
+  
+  --:NotEnoughCharges|
+  --Failure|Not enough charges for this option
+  --skipTo*39|EndOfCard
+  
+  --:DestructionCheck|
+  --Warning|All charges used
+  --Destruction Check| [[ [$Dest] 1d20]]
+  --?? $Dest > 1 ?? Safe|The staff is out of charges, but undamaged
+  --?? $Dest == 1 ?? Destroyed|the staff retains its +2 bonus to attack and damage roll but loses all other properties. 
+
+  --:EndOfCard|
+}}
