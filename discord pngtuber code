@@ -3,7 +3,7 @@ li>img[class^="Voice_avatar"]{ display:none; }
 li>img[class^="Voice_avatar"][src*="INSERT ID HERE"]{ display:block; }
 
 img[class^="Voice_avatar"] {
-content:url(INSERT OPEN MOUTH PNG);
+content:url(INSERT closed MOUTH PNG);
 height:auto !important;
 width:auto !important;
 border-radius:0% !important;
@@ -17,7 +17,7 @@ animation-name: speak-now;
 animation-duration: 1s;
 animation-fill-mode:forwards;
 filter: brightness(100%);
-content:url(INSERT CLOSED MOUTH PNG);
+content:url(INSERT open MOUTH PNG);
 }
 
 @keyframes speak-now {
