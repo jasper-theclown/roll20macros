@@ -1,0 +1,32 @@
+li.voice-state:not([data-reactid*="ID"]) { display:none; }
+li>img[class^="Voice_avatar"]{ display:none; }
+li>img[class^="Voice_avatar"][src*="INSERT ID HERE"]{ display:block; }
+
+img[class^="Voice_avatar"] {
+content:url(INSERT OPEN MOUTH PNG);
+height:auto !important;
+width:auto !important;
+border-radius:0% !important;
+filter: brightness(50%);
+}
+
+img[class*="Speaking"] {
+border-color:rgba(0,0,0,0) !important;
+position:relative;
+animation-name: speak-now;
+animation-duration: 1s;
+animation-fill-mode:forwards;
+filter: brightness(100%);
+content:url(INSERT CLOSED MOUTH PNG);
+}
+
+@keyframes speak-now {
+0% { bottom:0px; }
+15% { bottom:10px; }
+30% { bottom:0px; }
+}
+
+li[class^="Voice_voiceState"]{ position: static; }
+div.user{ position: absolute; left:40%; bottom:5%; }
+
+body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }
